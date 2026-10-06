@@ -35,7 +35,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   bottom: 16,
                   right: 16,
                   child: IconButton(
-                    onPressed: () => cameraController.tirarFoto(),
+                    onPressed: () => abrirModal(context, cameraController),
                     icon: Icon(Icons.camera_alt),
                   ),
                 ),
@@ -48,7 +48,7 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 }
 
-Future<void> abrirModal(context, CameraController controller) async {
+Future<void> abrirModal(BuildContext context, CameraController controller) async {
   await showModalBottomSheet(
     context: context,
     builder: (context) => SizedBox(
