@@ -34,8 +34,10 @@ class _CameraScreenState extends State<CameraScreen> {
                 Positioned(
                   bottom: 16,
                   right: 16,
-                  child: IconButton(onPressed: () => cameraController.tirarFoto(),
-                  icon: Icon(Icons.camera_alt)),
+                  child: IconButton(
+                    onPressed: () => cameraController.tirarFoto(),
+                    icon: Icon(Icons.camera_alt),
+                  ),
                 ),
               ],
             ),
@@ -44,4 +46,33 @@ class _CameraScreenState extends State<CameraScreen> {
       ),
     );
   }
+}
+
+Future<void> abrirModal(context, CameraController controller) async {
+  await showModalBottomSheet(
+    context: context,
+    builder: (context) => SizedBox(
+      height: 200,
+      child: Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.camera_alt),
+            title: Text("Tirar Foto"),
+            onTap: () {
+              controller.tirarFoto();
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.photo_library),
+            title: Text("Escolher da Galeria"),
+            onTap: () {
+              controller.pegarImagem();
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    ),
+  );
 }
